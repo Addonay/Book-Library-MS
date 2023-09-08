@@ -1,11 +1,11 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import DeclarativeBase
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = "sqlite:///./book_lib.db"  # You can change this to your preferred database URL
+DATABASE_URL = "sqlite:///book_lib.db"  # You can change this to your preferred database URL
 
 # Create a base class for declarative models
-Base = DeclarativeBase()
+Base = declarative_base()
 
 class Database:
     def __init__(self):

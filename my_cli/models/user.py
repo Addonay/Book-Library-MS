@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from my_cli.utils.database import Base
 
 class User(Base):
@@ -9,5 +9,5 @@ class User(Base):
     full_name = Column(String, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
-    is_active = Column(bool, default=True)
-    is_admin = Column(bool, default=False)
+    is_active = Column(Boolean, default=True)
+    is_admin = Column(Boolean, default=False)

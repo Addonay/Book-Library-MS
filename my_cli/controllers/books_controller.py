@@ -1,11 +1,11 @@
 from my_cli.models.book import Book  # Import your Book model
-from my_cli.utils.database import Session  # Replace with your database setup
+from my_cli.utils.database import database  # Replace with your database setup
 
 class BooksController:
     def add_book(self, title, author, genre, year, isbn):
         try:
             # Create a new session
-            session = Session()
+            session = database.get_session()
 
             # Create a new book with the author's name as a string
             new_book = Book(
@@ -27,7 +27,7 @@ class BooksController:
     def get_all_books(self):
         try:
             # Create a new session
-            session = Session()
+            session = database.get_session()
 
             # Query all books
             books = session.query(Book).all()
@@ -40,7 +40,7 @@ class BooksController:
     def update_book(self, isbn, title, author, genre, year):
         try:
             # Create a new session
-            session = Session()
+            session = database.get_session()
 
             # Query the book by ISBN
             book = session.query(Book).filter_by(isbn=isbn).first()
@@ -63,7 +63,7 @@ class BooksController:
     def delete_book(self, isbn):
         try:
             # Create a new session
-            session = Session()
+            session = database.get_session()
 
             # Query the book by ISBN
             book = session.query(Book).filter_by(isbn=isbn).first()

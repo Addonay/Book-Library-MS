@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Boolean
 from my_cli.utils.database import Base
 
 class Book(Base):
@@ -7,11 +6,8 @@ class Book(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True, nullable=False)
-    author_id = Column(Integer, ForeignKey('authors.id'), nullable=False)
+    author = Column(String, nullable=False)  # Store author name as a string
     genre = Column(String, index=True)
     publication_year = Column(Integer)
     isbn = Column(String, unique=True, index=True)
     is_available = Column(Boolean, default=True)
-
-    # Define the relationship with the Author model
-    author = relationship("Author", back_populates="books")

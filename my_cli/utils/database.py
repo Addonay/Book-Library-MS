@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL = "sqlite:///book_lib.db"  # You can change this to your preferred database URL
+DATABASE_URL = "sqlite:///book_lib.db" 
 
 # Create a base class for declarative models
 Base = declarative_base()
@@ -12,15 +12,15 @@ class Database:
 
     Attributes:
         engine: The SQLAlchemy database engine.
-        SessionLocal: A session factory for creating database sessions.
+        session_local: A session factory for creating database sessions.
     """
 
     def __init__(self):
         """
         Initializes the Database class by creating a database engine and session factory.
         """
-        self.engine = create_engine(DATABASE_URL)
-        self.session_local = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+        self.engine = create_engine(DATABASE_URL, echo=True)
+        self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
 
     def create_tables(self):
         """
@@ -35,7 +35,7 @@ class Database:
         Returns:
             A SQLAlchemy database session.
         """
-        return self.session_local()
+        return self.SessionLocal()
 
     def close_session(self, session):
         """
@@ -47,3 +47,5 @@ class Database:
         session.close()
 
 database = Database()
+database.create_tables()
+print("Database tables have been created")

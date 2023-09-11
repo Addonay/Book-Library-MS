@@ -1,5 +1,5 @@
 from my_cli.models.book import Book  # Import your Book model
-from my_cli.utils.database import database  # Replace with your database setup
+from my_cli.utils.database import database
 
 class BooksController:
     def add_book(self, title, author, genre, year, isbn):
